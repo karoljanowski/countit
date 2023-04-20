@@ -1,0 +1,14 @@
+@import './normalize.scss';
+@import './fonts.scss';
+
+@import './components/signup.scss';
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.content {
+    min-height: 100vh;
+    display: grid;
+    place-content: center;
+}
