@@ -1,0 +1,31 @@
+.dashboard {
+    padding: 1rem;
+    min-height: 100vh;
+    background: url('../assets/blob-scene-haikei.svg');
+    background-size: cover;
+    background-position: center;
+
+    & &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & &__user {
+        font-size: 1.5rem;
+        color: #E86A33;
+        display: flex;
+        gap: 1rem;
+    }
+
+    & &__logout {
+        background-color: #E86A33;
+        border: 0;
+        padding: 0.5rem;
+        color: #263A29;
+        font-weight: 700;
+
+        &:hover {
+            background-color: #eb7b4b;
+        }
+    }
+}

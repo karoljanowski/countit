@@ -25,7 +25,7 @@ export default function Signup() {
     return (
         <div className='auth'>
             <h2 className='auth__title'>Log In</h2>
-            {error && <p className='auth__error'>{error}</p>}
+            {error && <p className='auth__error'>{error}</p>}   
             <form className='auth__form'>
                 <input
                 placeholder='E-mail'
