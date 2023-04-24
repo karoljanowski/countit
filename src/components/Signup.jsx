@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react'
 import {useAuth} from './AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 export default function Signup() {
@@ -28,31 +28,31 @@ export default function Signup() {
         setLoading(false)
     }
     return (
-        <div className='signup'>
-            <h2 className='signup__title'>Sign Up</h2>
-            {error && <p className='signup__error'>{error}</p>}
-            <form className='signup__form'>
+        <div className='auth'>
+            <h2 className='auth__title'>Sign Up</h2>
+            {error && <p className='auth__error'>{error}</p>}
+            <form className='auth__form'>
                 <input
                 placeholder='E-mail'
-                className='signup__input'
+                className='auth__input'
                 type="email"
                 ref={email}
                 required />
                 <input
                 placeholder='Password'
-                className='signup__input'
+                className='auth__input'
                 type="password"
                 ref={password}
                 required />
                 <input
                 placeholder='Password Confirmation'
-                className='signup__input'
+                className='auth__input'
                 type="password"
                 ref={confirmPassword}
                 required />
-                <button disabled={loading} className='signup__button' onClick={handleClick}>Sign Up</button>
-
+                <button disabled={loading} className='auth__button' onClick={handleClick}>Sign Up</button>
             </form>
+            <p className='auth__bottom'><span>If you already have an account</span> <Link to={'/login'}>login</Link></p>
         </div>
     )
 }

@@ -21,7 +21,7 @@ export default function Dashboard() {
             navigate('/login')
         }
     },[])
-    console.log(currentUser.uid)
+    
     if(currentUser){
         return (
             <div>

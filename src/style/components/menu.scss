@@ -1,0 +1,29 @@
+.menu {
+    width: 100%;
+    display: flex;
+
+    & &__button {
+        width: 48px;
+        height: 26px;
+        position: relative;
+    }
+
+    & &__hamburger,
+    & &__hamburger::after,
+    & &__hamburger::before {
+        width: 48px;
+        height: 5px;
+        background-color: #E86A33;
+        display: block;
+        content: "";
+        position: absolute;
+    }
+
+    & &__hamburger::before {
+        top: 10px;
+    }
+
+    & &__hamburger::after {
+        top: 20px;
+    }
+}

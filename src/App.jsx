@@ -11,14 +11,12 @@ function App() {
  return(
 
     <div className="content">
-      <div>
         <Routes>
           <Route exact path='/' element={<StartPage/ >}/>
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/dashboard' element={<Dashboard />} />
         </Routes>
-      </div>
     </div>
  )
   

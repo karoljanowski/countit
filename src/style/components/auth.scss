@@ -1,0 +1,82 @@
+.auth {
+    min-height: 100vh;
+    background: url('../assets/blob-scene-haikei.svg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    & &__title {
+        text-transform: uppercase;
+        color: #E86A33;
+        letter-spacing: 10px;
+        text-shadow: 5px 3px #9f4924;
+        font-size: 4rem;
+    }
+
+    & &__error {
+        color: red;
+    }
+
+    & &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    & &__input {
+        color: #E86A33;
+        border: 1px solid #E86A33;
+        background: transparent;
+        padding: 1rem;
+        outline: 0;
+        font-size: 1.25rem;
+
+        &::placeholder {
+            color: #9f4924;
+        }
+
+        &:focus {
+            border: 3px solid #E86A33;
+        }
+    }
+
+    & &__button {
+        border: 1px solid #E86A33;
+        background-color: #E86A33;
+        color: #263A29;
+        padding: 1rem;
+        text-decoration: none;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        box-shadow: 5px 5px #9f4924;
+
+        &:hover {
+            background-color: #eb7b4b;
+        }
+
+        &:focus {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+    }
+
+    & &__bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #E86A33;
+        font-size: 1.25rem;
+
+        & a {
+            color: #E86A33;
+            font-weight: 700;
+        }
+    }
+}

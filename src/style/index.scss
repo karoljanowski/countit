@@ -1,7 +1,9 @@
 @import './normalize.scss';
 @import './fonts.scss';
 
-@import './components/signup.scss';
+@import './components/auth.scss';
+@import './components/startPage.scss';
+@import './components/menu.scss';
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -9,6 +11,4 @@ body {
 
 .content {
     min-height: 100vh;
-    display: grid;
-    place-content: center;
 }
