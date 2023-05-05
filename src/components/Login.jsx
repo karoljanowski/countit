@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react'
-import {useAuth} from './AuthContext'
+import {useAuth} from './Context'
 import { useNavigate, Link } from 'react-router-dom'
 
 

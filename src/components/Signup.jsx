@@ -1,13 +1,16 @@
 import React, {useRef, useState} from 'react'
-import {useAuth} from './AuthContext'
+import {useAuth} from './Context'
 import { useNavigate, Link } from 'react-router-dom'
+import { createUser } from '../crud'
+
+//db
 
 
 export default function Signup() {
     const email = useRef()
     const password = useRef()
     const confirmPassword = useRef()
-    const {signup} = useAuth()
+    const {signup, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -16,12 +19,14 @@ export default function Signup() {
         e.preventDefault()
         if(password.current.value !== confirmPassword.current.value){
             setError('')
-            setLoading(true)
             return setError('Password do not match')
         }
         try{
+            setLoading(true)
             await signup(email.current.value, password.current.value)
-            navigate('login')
+            await createUser(email.current.value)
+            navigate('/login')
+            
         }catch{
             setError('Failed to create an account')
         }

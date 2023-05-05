@@ -1,19 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {auth} from '../firebase'
-const AuthContext = React.createContext()
+import { getUserData } from '../crud'
+const Context = React.createContext()
 
 export function useAuth(){
-    return useContext(AuthContext)
+    return useContext(Context)
 }
 
-export function AuthProvider({children}) {
+
+export function Provider({children}) {
+    const [wantFetchData, setWantFetchData] = useState(false)
+    const [userData, setUserData] = useState(null)
+
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const value = {
         currentUser,
         signup,
         login,
-        logout
+        logout,
+        setWantFetchData,
+        userData
     }
     function logout(){
         return auth.signOut()
@@ -31,10 +38,26 @@ export function AuthProvider({children}) {
         })
         return unsubscribe
     }, [])
+    //login
+    useEffect(() => { //get user data after login
+        if(currentUser){
+            const fetchData = async () => {
+                const data = await getUserData('123')
+                setUserData(data[0])
+            }
+            if(wantFetchData){
+                console.log('fetching')
+                fetchData()
+                setWantFetchData(false)
+            }
+        }
+    },[wantFetchData])
+    
+    
 
     return (
-        <AuthContext.Provider value={value}>
+        <Context.Provider value={value}>
             {!loading && children}
-        </AuthContext.Provider>
+        </Context.Provider>
     )
 }

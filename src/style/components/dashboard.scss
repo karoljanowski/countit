@@ -10,6 +10,12 @@
         justify-content: space-between;
     }
 
+    & &__title {
+        color: #263A29;
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+
     & &__user {
         font-size: 1.5rem;
         color: #E86A33;
@@ -26,6 +32,33 @@
 
         &:hover {
             background-color: #eb7b4b;
+        }
+    }
+
+    & &__links {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    & &__link {
+        background-color: #41644A;
+        box-shadow: 5px 5px #263A29;
+        min-width: calc(50% - 2rem);
+        flex: 1;
+        height: 100px;
+        color: #E86A33;
+        display: grid;
+        place-content: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.5rem;
+
+        &:hover {
+            background-color: #263A29;
         }
     }
 }

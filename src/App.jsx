@@ -5,6 +5,8 @@ import StartPage from './components/StartPage'
 import Login from './components/Login'
 import { Routes, Route, Link } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
+import DashboardMain from './components/DashboardMain'
+import Profile from './components/Profile'
 
 
 function App() {
@@ -16,8 +18,10 @@ function App() {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/dashboard' element={<Dashboard />}>
-            <Route exact path='/dashboard' element={<Link to='/dashboard/profile'>123</Link>} />
-            <Route exact path='/dashboard/profile' element={<h1>Profile</h1>} />
+            <Route exact path='/dashboard' element={<DashboardMain />} />
+            <Route exact path='/dashboard/profile' element={<Profile />} />
+            <Route exact path='/dashboard/products' element={<h1>Products</h1>} />
+            <Route exact path='/dashboard/diet' element={<h1>Diet</h1>} />
           </Route>
         </Routes>
     </div>
