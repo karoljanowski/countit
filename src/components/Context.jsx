@@ -42,11 +42,10 @@ export function Provider({children}) {
     useEffect(() => { //get user data after login
         if(currentUser){
             const fetchData = async () => {
-                const data = await getUserData('123')
+                const data = await getUserData(currentUser.email)
                 setUserData(data[0])
             }
             if(wantFetchData){
-                console.log('fetching')
                 fetchData()
                 setWantFetchData(false)
             }

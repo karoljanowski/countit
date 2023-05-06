@@ -61,4 +61,76 @@
             background-color: #263A29;
         }
     }
+
+    & &__subtitle {
+        color: #E86A33;
+    }
+
+    & &__calorie-form {
+        display: flex;
+        flex-direction: column;
+
+
+        & label {
+            color: #263A29;
+            font-weight: bold;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            font-size: 1.25rem;
+        }
+
+        & input {
+            background: transparent;
+            outline: none;
+            border: 1px solid #41644A;
+            padding: 0.5rem;
+            color: #E86A33;
+            font-weight: bold;
+            font-size: 1.25rem;
+            border-radius: 5px;
+        }
+    }
+
+    & &__form-buttons {
+        display: flex;
+        margin-top: 1rem;
+        gap: 1rem;
+
+        & button {
+            flex: 1;
+            background-color: #263A29;
+            box-shadow: 2px 2px #E86A33;
+            border: 0;
+            color: #E86A33;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+
+        }
+    }
+
+    & &__add-meal {
+        background-color: #E86A33;
+        border: 0;
+        color: #263A29;
+        padding: 0.5rem 2rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+}
+
+.meal {
+    border: 1px solid #E86A33;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & &__name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #E86A33;
+    }
 }

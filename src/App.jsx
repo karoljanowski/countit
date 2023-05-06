@@ -7,6 +7,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import DashboardMain from './components/DashboardMain'
 import Profile from './components/Profile'
+import Diet from './components/Diet'
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
             <Route exact path='/dashboard' element={<DashboardMain />} />
             <Route exact path='/dashboard/profile' element={<Profile />} />
             <Route exact path='/dashboard/products' element={<h1>Products</h1>} />
-            <Route exact path='/dashboard/diet' element={<h1>Diet</h1>} />
+            <Route exact path='/dashboard/diet' element={<Diet />} />
           </Route>
         </Routes>
     </div>
