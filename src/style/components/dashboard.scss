@@ -119,18 +119,9 @@
         font-size: 1rem;
     }
 
-}
-
-.meal {
-    border: 1px solid #E86A33;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    & &__name {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #E86A33;
+    & &__back {
+        font-size: 2rem;
+        font-size: #F1E2DB;
     }
+
 }

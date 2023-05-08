@@ -6,6 +6,8 @@
 @import './components/menu.scss';
 @import './components/dashboard.scss';
 @import './components/modal.scss';
+@import './components/meal.scss';
+@import './components/addProducts.scss';
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -13,4 +15,5 @@ body {
 
 .content {
     min-height: 100vh;
+
 }

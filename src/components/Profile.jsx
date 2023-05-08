@@ -85,8 +85,10 @@ export default function Profile() {
 
     return (
         <div className="dashboard__main">
-            <FontAwesomeIcon style={{color: "#263A29",}} size='xl' onClick={handleBack} icon={faArrowLeft}></FontAwesomeIcon>
-            <h1 className='dashboard__title'>Profile</h1>
+            <span className='dashboard__back'>
+                <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft}></FontAwesomeIcon>
+            </span>
+            <h2 className='dashboard__title'>Profile</h2>
             <h2 className='dashboard__subtitle'>Your settings</h2>
             <form className='dashboard__calorie-form'>
                 <label htmlFor="calories">Calories</label>

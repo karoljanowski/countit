@@ -4,10 +4,13 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import Meal from './Meal'
 import {nanoid} from 'nanoid'
+import AddProduct from './AddProduct'
 
 export default function Diet() {
     const navigate = useNavigate()
     const [meals, setMeals] = useState([])
+    const [addingProducts, setAddingProducts] = useState()
+
     function handleBack(){
         navigate('/dashboard')
     }
@@ -29,20 +32,26 @@ export default function Diet() {
         setMeals((prev) =>
           prev.map((meal) => (meal.id === id ? { ...meal, name: newName } : meal))
         );
-      };
+    };
+
+    function addProduct(){
+        setAddingProducts(true)
+    }
     const mealsDOM = meals.map(meal => {
-        return <Meal key={meal.id} data={meal} name={meal.name} onChange={(newName) => handleItemChange(meal.id, newName)}/>
+        return <Meal key={meal.id} data={meal} name={meal.name} addProduct={addProduct} onChange={(newName) => handleItemChange(meal.id, newName)}/>
     })
-    console.log(meals)
     return (
         <div className="dashboard__main">
-            <FontAwesomeIcon style={{color: "#263A29",}} size='xl' onClick={handleBack} icon={faArrowLeft}></FontAwesomeIcon>
+            <span className='dashboard__back'>
+                <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft}></FontAwesomeIcon>
+            </span>
             <div className='dashboard__top'>
-                <div className='dashboard__title'>Diet</div>
+                <h2 className='dashboard__title'>Diet</h2>
                 <button className='dashboard__add-meal' onClick={addMeal}>Add meal</button>
             </div>
             <h2 className='dashboard__subtitle'>Meals</h2>
             {mealsDOM}
+            {addingProducts && <AddProduct />}
         </div>
     )
 }
