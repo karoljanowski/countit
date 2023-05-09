@@ -9,7 +9,8 @@ import AddProduct from './AddProduct'
 export default function Diet() {
     const navigate = useNavigate()
     const [meals, setMeals] = useState([])
-    const [addingProducts, setAddingProducts] = useState()
+    const [addingProducts, setAddingProducts] = useState(false)
+    const [currentMeal, setCurrentMeal] = useState('')
 
     function handleBack(){
         navigate('/dashboard')
@@ -34,11 +35,17 @@ export default function Diet() {
         );
     };
 
-    function addProduct(){
+    function addProduct(name){
+        setCurrentMeal(name)
         setAddingProducts(true)
     }
+
     const mealsDOM = meals.map(meal => {
-        return <Meal key={meal.id} data={meal} name={meal.name} addProduct={addProduct} onChange={(newName) => handleItemChange(meal.id, newName)}/>
+        return <Meal 
+        key={meal.id} 
+        data={meal} name={meal.name} 
+        addProduct={() => addProduct(meal.name)} 
+        onChange={(newName) => handleItemChange(meal.id, newName)}/>
     })
     return (
         <div className="dashboard__main">
@@ -51,7 +58,7 @@ export default function Diet() {
             </div>
             <h2 className='dashboard__subtitle'>Meals</h2>
             {mealsDOM}
-            {addingProducts && <AddProduct />}
+            {addingProducts && <AddProduct name={currentMeal} />}
         </div>
     )
 }

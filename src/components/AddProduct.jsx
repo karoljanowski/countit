@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 
-export default function AddProduct() {
+export default function AddProduct({name}) {
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
-    const [r, sR] = useState([])
 
     const searchIngredients = async () => {
       try {
         const response = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${query}&apiKey=60a5a2687c6c4b56a789a58833762101`);
-        const data = await response.json();
+        const data = await response.json()
         const results = data.results;
         const resultWithCalories = [];
         for (let i = 0; i < results.length; i++) {
@@ -28,26 +27,15 @@ export default function AddProduct() {
         console.error(error);
       }
     }
-    console.log(results)
-    const ingredients = () => {
-      try{
-        fetch('https://api.spoonacular.com/food/ingredients/9040/information?apiKey=60a5a2687c6c4b56a789a58833762101&amount=100&units="g"')
-        .then(res => res.json())
-        .then(data => sR(data))
-      }catch(error){
-        console.log(error)
-      }
-    }
-
 
     const resultsElements = results.map(i => {
-      return <div>{i.name}/{i.calories}/{i.protein}/{i.fat}/{i.carbohydrate}</div>
+      return <div className='add-products__result'>{i.name} {i.calories}/{i.protein}/{i.fat}/{i.carbohydrate}</div>
     })
 
     return (
       <div className='add-products'>
         <div className="add-products__content">
-          <h3 className='add-products__title'>Adding ingredient to MEAL1</h3>
+          <h3 className='add-products__title'>Adding ingredient to {name}</h3>
           <div className='add-products__top'>
             <input
               className='add-products__input'
