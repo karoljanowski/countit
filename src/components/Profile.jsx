@@ -17,36 +17,40 @@ export default function Profile() {
         userCarbo: 0
     })
     const [displayModal, setDisplayModal] = useState(false)
+    const [modalText, setModalText] = useState('')
     function handleBack(){
         navigate('/dashboard')
     }
     function closeModal(){
         setDisplayModal(false)
     }
-    function isMacroEqual(){
-        const macroSum = formData.userCarbo * 4 + formData.userProtein * 4 + formData.userFat * 9
-        if(macroSum == formData.userCalories){
-            return true
-        }else{
-            return false
+    function macroPercentage(){
+        const macroSum = (formData.userCarbo * 4 + formData.userProtein * 4 + formData.userFat * 9)/formData.userCalories
+        return macroSum * 100
+    }
+    function stylePercentage(){
+        if(macroPercentage() !== 100){
+            return {color: 'red'}
         }
     }
     function handleChange(e){
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const { name, value } = e.target
+        setFormData({ ...formData, [name]: value })
     }
     async function handleSubmit(e){
         e.preventDefault()
-        if(isMacroEqual()){
+        if(macroPercentage() === 100){
             try{
                 await updateUserCalories(formData, currentUser.email)
                 setWantFetchData(true)
+                setModalText('Changes saved.')
                 setDisplayModal(true)
             }catch{
                 console.log(error)
             }
         }else{
-            console.log('bad calories')
+            setModalText('Fix your macronutrient breakdown')
+            setDisplayModal(true)
         }
     }
     function handleCancel(){
@@ -90,6 +94,7 @@ export default function Profile() {
             </span>
             <h2 className='dashboard__title'>Profile</h2>
             <h2 className='dashboard__subtitle'>Your settings</h2>
+            <p className='dashboard__percentage'><span>Macronutrient breakdown:</span><span style={stylePercentage()}>{Number(macroPercentage().toFixed(1))}%</span></p>
             <form className='dashboard__calorie-form'>
                 <label htmlFor="calories">Calories</label>
                 <input
@@ -131,7 +136,7 @@ export default function Profile() {
                     <button onClick={handleSubmit}>Save</button>
                 </div>
             </form>
-            {displayModal && <Modal closeModal={closeModal} text={'Changes saved'}/>}
+            {displayModal && <Modal closeModal={closeModal} text={modalText}/>}
         </div>
         
 

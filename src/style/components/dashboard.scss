@@ -66,6 +66,20 @@
         color: #E86A33;
     }
 
+    & &__percentage {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.25rem;
+        margin-top: 0.5rem;
+        background-color: #E86A33;
+        color: #263A29;
+        padding: 0.5rem;
+
+        & span:nth-child(2) {
+            font-weight: 700;
+        }
+    }
+
     & &__calorie-form {
         display: flex;
         flex-direction: column;
