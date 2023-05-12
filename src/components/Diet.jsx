@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +12,7 @@ export default function Diet() {
     const [addingProducts, setAddingProducts] = useState(false)
     const [currentMeal, setCurrentMeal] = useState('')
 
+
     function handleBack(){
         navigate('/dashboard')
     }
@@ -20,12 +21,12 @@ export default function Diet() {
             id: nanoid(),
             name: 'Meal',
             total: {
-                calorie: 0,
+                calories: 0,
                 protein: 0,
                 fat: 0,
                 carbo: 0
             },
-            ingrediens: []
+            products: []
         }
         setMeals([...meals, newMeal])
     }
@@ -35,16 +36,67 @@ export default function Diet() {
         );
     };
 
-    function addProduct(name){
-        setCurrentMeal(name)
+    function showAddProduct(meal){
+        setCurrentMeal(meal)
         setAddingProducts(true)
     }
+    function hideAddProduct(){
+        setCurrentMeal({})
+        setAddingProducts(false)
+    }
+    function addProduct(id, product){
+        const mealIndex = meals.findIndex(meal => meal.id === id);
+        const updatedMeals = meals.map((meal, index) => {
+            if (index !== mealIndex) {
+                return meal;
+            }
+            const updatedMeal = {
+                ...meal,
+                products: [...meal.products, product]
+            }
+            
+            return updatedMeal;
+        });
+        setMeals(updatedMeals);
 
+    }
+
+    const prevMealsRef = useRef(meals);
+
+    useEffect(() => {
+        setAddingProducts(false)
+        for (let i = 0; i < meals.length; i++) {
+            const prevProducts = prevMealsRef.current[i]?.products;
+            const currentProducts = meals[i]?.products;
+            if (prevProducts !== currentProducts) {
+                const updatedMeals = meals.map(meal => {
+                    const total = meal.products.reduce((acc, cur) => {
+                    return {
+                        calories: acc.calories + cur.calories,
+                        protein: acc.protein + cur.protein,
+                        fat: acc.fat + cur.fat,
+                        carbo: acc.carbo + cur.carbo
+                    };
+                    }, { calories: 0, protein: 0, fat: 0, carbo: 0 });
+                    
+                    return {
+                    ...meal,
+                    total
+                    };
+                });
+                setMeals(updatedMeals)
+            }
+      }
+      prevMealsRef.current = meals;
+    }, [meals]);
+    
+
+    console.log(meals)
     const mealsDOM = meals.map(meal => {
         return <Meal 
         key={meal.id} 
-        data={meal} name={meal.name} 
-        addProduct={() => addProduct(meal.name)} 
+        data={meal}
+        showAddProduct={() => showAddProduct(meal)} 
         onChange={(newName) => handleItemChange(meal.id, newName)}/>
     })
     return (
@@ -58,7 +110,12 @@ export default function Diet() {
             </div>
             <h2 className='dashboard__subtitle'>Meals</h2>
             {mealsDOM}
-            {addingProducts && <AddProduct name={currentMeal} />}
+            {addingProducts && 
+            <AddProduct 
+            meal={currentMeal} 
+            addProduct={(product) => addProduct(currentMeal.id, product)} 
+            hideAddProduct={hideAddProduct} 
+            />}
         </div>
     )
 }

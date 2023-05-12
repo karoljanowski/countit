@@ -11,9 +11,9 @@
 
     & &__title {
         text-transform: uppercase;
-        color: #E86A33;
+        color: $dark;
         letter-spacing: 10px;
-        text-shadow: 5px 3px #9f4924;
+        text-shadow: 5px 3px $dark2;
         font-size: 4rem;
     }
 
@@ -33,35 +33,35 @@
     }
 
     & &__input {
-        color: #E86A33;
-        border: 1px solid #E86A33;
+        color: $dark;
+        border: 1px solid $dark;
         background: transparent;
         padding: 1rem;
         outline: 0;
         font-size: 1.25rem;
 
         &::placeholder {
-            color: #9f4924;
+            color: $dark;
         }
 
         &:focus {
-            border: 3px solid #E86A33;
+            border: 3px solid $dark;
         }
     }
 
     & &__button {
-        border: 1px solid #E86A33;
-        background-color: #E86A33;
-        color: #263A29;
+        border: 1px solid $dark;
+        background-color: $dark;
+        color: $gray;
         padding: 1rem;
         text-decoration: none;
         font-size: 1.5rem;
         text-transform: uppercase;
         font-weight: 700;
-        box-shadow: 5px 5px #9f4924;
+        box-shadow: 5px 5px $dark2;
 
         &:hover {
-            background-color: #eb7b4b;
+            background-color: $color;
         }
 
         &:focus {
@@ -74,11 +74,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: #E86A33;
+        color: $dark;
         font-size: 1.25rem;
 
         & a {
-            color: #E86A33;
+            color: $dark;
             font-weight: 700;
         }
     }

@@ -1,13 +1,14 @@
 @import './normalize.scss';
 @import './fonts.scss';
+@import './root.scss';
 
 @import './components/auth.scss';
 @import './components/startPage.scss';
-@import './components/menu.scss';
 @import './components/dashboard.scss';
 @import './components/modal.scss';
 @import './components/meal.scss';
 @import './components/addProducts.scss';
+@import './components/loading.scss';
 
 body {
     font-family: 'Roboto', sans-serif;

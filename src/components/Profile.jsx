@@ -5,6 +5,7 @@ import Modal from './Modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
+import Loading from './Loading'
 
 
 export default function Profile() {
@@ -84,7 +85,7 @@ export default function Profile() {
     }, [userData])
 
     if(!userData){
-        return <h1>Loading...</h1>
+        return <Loading />
     }
 
     return (

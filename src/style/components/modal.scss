@@ -1,18 +1,18 @@
 .modal {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #0000005c;
+    background-color: #000000d9;
     display: flex;
     justify-content: center;
     align-items: center;
 
     & &__content {
-        background-color: #263A29;
+        background-color: $color;
         padding: 2rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
         color: white;
         display: flex;
         flex-direction: column;
@@ -24,9 +24,35 @@
 
     & &__button {
         border: 0;
-        background-color: #E86A33;
-        color: #263A29;
+        background-color: $gray;
+        color: $dark;
         font-weight: bold;
         padding: 0.5rem;
+    }
+
+    & &__nutrients {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    & &__input {
+        background-color: $gray;
+        border: 0;
+        outline: 0;
+        font-size: 1.25rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 10px;
+        color: $dark;
+    }
+
+    & &__icon {
+        align-self: flex-end;
+        font-size: 2rem;
+    }
+
+    & &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }

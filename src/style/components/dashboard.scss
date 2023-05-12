@@ -11,27 +11,27 @@
     }
 
     & &__title {
-        color: #263A29;
+        color: $color;
         font-size: 2rem;
         text-transform: uppercase;
     }
 
     & &__user {
         font-size: 1.5rem;
-        color: #E86A33;
+        color: $color;
         display: flex;
         gap: 1rem;
     }
 
     & &__logout {
-        background-color: #E86A33;
+        background-color: $dark;
         border: 0;
         padding: 0.5rem;
-        color: #263A29;
+        color: $gray;
         font-weight: 700;
 
         &:hover {
-            background-color: #eb7b4b;
+            background-color: $color;
         }
     }
 
@@ -44,12 +44,12 @@
     }
 
     & &__link {
-        background-color: #41644A;
-        box-shadow: 5px 5px #263A29;
+        background-color: $color;
+        box-shadow: 5px 5px $dark;
         min-width: calc(50% - 2rem);
         flex: 1;
         height: 100px;
-        color: #E86A33;
+        color: $gray;
         display: grid;
         place-content: center;
         text-decoration: none;
@@ -58,12 +58,12 @@
         font-size: 1.5rem;
 
         &:hover {
-            background-color: #263A29;
+            background-color: $dark;
         }
     }
 
     & &__subtitle {
-        color: #E86A33;
+        color: $dark;
     }
 
     & &__percentage {
@@ -71,8 +71,8 @@
         justify-content: space-between;
         font-size: 1.25rem;
         margin-top: 0.5rem;
-        background-color: #E86A33;
-        color: #263A29;
+        background-color: $dark;
+        color: $gray;
         padding: 0.5rem;
 
         & span:nth-child(2) {
@@ -86,7 +86,7 @@
 
 
         & label {
-            color: #263A29;
+            color: $dark;
             font-weight: bold;
             margin-top: 1rem;
             margin-bottom: 0.25rem;
@@ -96,9 +96,9 @@
         & input {
             background: transparent;
             outline: none;
-            border: 1px solid #41644A;
+            border: 1px solid $dark;
             padding: 0.5rem;
-            color: #E86A33;
+            color: $dark;
             font-weight: bold;
             font-size: 1.25rem;
             border-radius: 5px;
@@ -112,10 +112,10 @@
 
         & button {
             flex: 1;
-            background-color: #263A29;
-            box-shadow: 2px 2px #E86A33;
+            background-color: $dark;
+            box-shadow: 2px 2px $dark2;
             border: 0;
-            color: #E86A33;
+            color: $gray;
             padding: 1rem;
             text-transform: uppercase;
             font-weight: bold;
@@ -124,9 +124,9 @@
     }
 
     & &__add-meal {
-        background-color: #E86A33;
+        background-color: $dark;
         border: 0;
-        color: #263A29;
+        color: $gray;
         padding: 0.5rem 2rem;
         text-transform: uppercase;
         font-weight: bold;
