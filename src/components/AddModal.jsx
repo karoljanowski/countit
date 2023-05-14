@@ -27,7 +27,8 @@ export default function AddModal({data, save, hide}) {
             calories: nutrients.calories,
             protein: nutrients.protein,
             fat: nutrients.fat,
-            carbo: nutrients.carbo
+            carbo: nutrients.carbo,
+            value: value
         })
     }
     function setHide(){

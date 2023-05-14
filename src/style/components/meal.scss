@@ -1,37 +1,106 @@
 .meal {
-    border: 2px solid $dark;
-    margin: 1rem 0;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: 1rem;
+    background-color: $dark;
+    padding: 0.75rem;
+    border-radius: 5px;
+    overflow: hidden;
 
-    & &__name {
-        font-size: 1.5rem;
-        font-weight: 700;
+    & &__top {
+        border: 1px solid $dark;
+        border-radius: 5px;
         display: flex;
         align-items: center;
-        gap: 1rem;
-        color: $color;
-        width: 100%;
+        gap: 1.5rem;
+        color: $gray;
     }
 
-    & &__plus {
-        font-size: 1.5rem;
-        color: $color;
+    & &__name {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.25rem;
+    }
+
+    & &__name-text {
+        display: flex;
+        gap: 1rem;
     }
 
     & &__input {
-        font-size: 1.5rem;
-        border: 0;
-        padding-bottom: 3px;
-        border-bottom: 2px solid $color;
-        outline: 0;
-        color: $color;
         background-color: transparent;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid $gray;
+        font-size: inherit;
+        color: inherit;
         width: 100%;
     }
 
-    & &__content-top {}
+    & &__nutrients {
+        padding-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        color: $gray;
+    }
 
+    & &__nutrient {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    & &__nutrient::before {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+    }
+
+    & &__nutrient:nth-child(1):before {
+        background-color: purple;
+    }
+
+    & &__nutrient:nth-child(2):before {
+        background-color: red;
+    }
+
+    & &__nutrient:nth-child(3):before {
+        background-color: yellow;
+    }
+
+    & &__nutrient:nth-child(4):before {
+        background-color: blue;
+    }
+
+
+    & &__down {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease-out;
+    }
+
+    & &__products {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    & &__product {
+        background-color: $gray;
+        border-radius: 5px;
+        padding: 0.75rem;
+    }
+
+    & &__product-name {
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+
+    & &__product-values {
+        padding: 0.25rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
 }

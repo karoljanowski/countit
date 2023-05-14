@@ -5,12 +5,17 @@ import { useNavigate } from 'react-router-dom'
 import Meal from './Meal'
 import {nanoid} from 'nanoid'
 import AddProduct from './AddProduct'
+import { useAuth } from './Context'
+import { updateUserMeals } from '../crud'
+import Total from './Total'
+import Loading from './Loading'
 
 export default function Diet() {
     const navigate = useNavigate()
     const [meals, setMeals] = useState([])
     const [addingProducts, setAddingProducts] = useState(false)
     const [currentMeal, setCurrentMeal] = useState('')
+    const {userData, setWantFetchData, currentUser} = useAuth()
 
 
     function handleBack(){
@@ -88,10 +93,36 @@ export default function Diet() {
             }
       }
       prevMealsRef.current = meals;
-    }, [meals]);
-    
 
-    console.log(meals)
+      const updateDB = async () => {
+          try{
+            await updateUserMeals(meals, currentUser.email)
+          }catch(error){
+            console.log(error)
+          }
+      }
+      if(meals.length > 0){
+          updateDB()
+      }
+    }, [meals]);
+    useEffect(() => {
+        const getDataOnLoad = async () => {
+            try{
+                await setWantFetchData(true)
+            }catch(error){
+                console.log(error)
+            }            
+        }
+        getDataOnLoad()
+    }, [])
+
+    useEffect(()=>{
+        if(userData){
+            setMeals(userData.meals)
+        }
+    }, [userData])
+
+    
     const mealsDOM = meals.map(meal => {
         return <Meal 
         key={meal.id} 
@@ -99,6 +130,9 @@ export default function Diet() {
         showAddProduct={() => showAddProduct(meal)} 
         onChange={(newName) => handleItemChange(meal.id, newName)}/>
     })
+    if(!userData){
+        return <Loading />
+    }
     return (
         <div className="dashboard__main">
             <span className='dashboard__back'>
@@ -109,13 +143,17 @@ export default function Diet() {
                 <button className='dashboard__add-meal' onClick={addMeal}>Add meal</button>
             </div>
             <h2 className='dashboard__subtitle'>Meals</h2>
-            {mealsDOM}
+            <div className="dashboard__meals">
+                {mealsDOM}
+            </div>
             {addingProducts && 
             <AddProduct 
             meal={currentMeal} 
             addProduct={(product) => addProduct(currentMeal.id, product)} 
             hideAddProduct={hideAddProduct} 
             />}
+            {userData && <Total meals={meals} userData={userData} />}
         </div>
+
     )
 }

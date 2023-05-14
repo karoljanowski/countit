@@ -1,6 +1,6 @@
 .dashboard {
     padding: 1rem;
-    min-height: 100vh;
+    height: 100vh;
     background: url('../assets/blob-scene-haikei.svg');
     background-size: cover;
     background-position: center;
@@ -136,6 +136,11 @@
     & &__back {
         font-size: 2rem;
         font-size: #F1E2DB;
+    }
+
+    & &__meals {
+        max-height: 450px;
+        overflow: scroll;
     }
 
 }

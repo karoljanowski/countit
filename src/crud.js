@@ -27,7 +27,8 @@ export const createUser = async (email) => {
         userCalories: 0,
         userProtein: 0,
         userFat: 0,
-        userCarbo: 0
+        userCarbo: 0,
+        meals: []
     })
 }
 export const updateUserCalories = async (data, email) => {
@@ -39,6 +40,15 @@ export const updateUserCalories = async (data, email) => {
             userProtein: data.userProtein,
             userFat: data.userFat,
             userCarbo: data.userCarbo
+        });
+    });
+};
+export const updateUserMeals = async (data, email) => {
+    const q = query(userCollectionRef, where('userEmail', '==', email));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+        await updateDoc(doc.ref, {
+            meals: data
         });
     });
 };
