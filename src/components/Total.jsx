@@ -15,15 +15,23 @@ export default function Total({meals, userData}) {
     totalCount.carbo += meal.total.carbo;
     });
     const data = [
-        {bgcolor: 'purple', completed: totalCount.calories / userData.userCalories, sign: 'kcal'},
-        // {bgcolor: 'red', completed: totalCount.protein / userData.userProtein, sign: 'P'},
-        // {bgcolor: 'yellow', completed: totalCount.fat / userData.userFat, sign: 'F'},
-        // {bgcolor: 'purple', completed: totalCount.carbo / userData.userCarbo, sign: 'C'}
+        {bgcolor: 'purple', total: (totalCount.calories).toFixed(2), user: userData.userCalories, sign: 'kcal'},
+        {bgcolor: 'red', total: (totalCount.protein).toFixed(2), user: userData.userProtein, sign: 'P'},
+        {bgcolor: 'yellow', total: (totalCount.fat).toFixed(2), user: userData.userFat, sign: 'F'},
+        {bgcolor: 'blue', total: (totalCount.carbo).toFixed(2), user: userData.userCarbo, sign: 'C'}
     ]
-    const elements = data.map(e => {
+    function tooMuch(e){
+        if(e.total / e.user > 1){
+            return {color: 'red'}
+        }
+    }
+    const elements = data.map((e, index) => {
         return (
-            <div className="total__item">
-                <ProgressBar bgcolor={e.bgcolor} completed={e.completed}/>
+            <div key={index} className="total__item">
+                <span>{e.sign}</span>
+                <span style={tooMuch(e)}>{e.total} </span>
+                <span>/{e.user}</span>
+                <ProgressBar bgcolor={e.bgcolor} completed={(e.total/e.user) * 100}/>
             </div>
         )
     })
@@ -37,7 +45,6 @@ export default function Total({meals, userData}) {
 
 const ProgressBar = (props) => {
     const { bgcolor, completed } = props;
-    console.log(completed)
   
     const containerStyles = {
         height: 2,
@@ -47,7 +54,7 @@ const ProgressBar = (props) => {
     
       const fillerStyles = {
         height: '100%',
-        width: `${completed}%`,
+        width: `${completed >= 100 ? 100 : completed}%`,
         backgroundColor: bgcolor,
         borderRadius: 'inherit',
         textAlign: 'right'

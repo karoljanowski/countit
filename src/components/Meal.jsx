@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faCheck, faPlus, faSquareCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faTrash, faPlus, faSquareCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-export default function Meal({onChange, showAddProduct, data}) {
+export default function Meal({onChange, showAddProduct, data, deleteMeal}) {
 
     const [editing, setEditing] = useState(false)
     const [value, setValue] = useState(data.name)
@@ -11,7 +11,9 @@ export default function Meal({onChange, showAddProduct, data}) {
     const handleInputChange = (event) => {
       setValue(event.target.value);
     }
-
+    function handleDelete(){
+      deleteMeal(data.id)
+    }
     const handleSave = () => {
       setEditing(false);
       onChange(value);
@@ -45,6 +47,9 @@ export default function Meal({onChange, showAddProduct, data}) {
     })
     return (
       <div className="meal">
+
+        {expand && <FontAwesomeIcon onClick={handleDelete} className='meal__delete' icon={faTrash}></FontAwesomeIcon>}
+
         <div className="meal__top">
           <FontAwesomeIcon style={rotate()} onClick={expandMeal} className='meal__down' icon={faSquareCaretDown}></FontAwesomeIcon>
           {editing ? (
