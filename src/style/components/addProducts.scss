@@ -7,9 +7,14 @@
     background-color: #000000ac;
 
     & &__content {
+        margin: 0 auto;
+        max-width: 1200px;
+        display: flex;
+        flex-direction: column;
         background-color: $dark;
         margin-top: 3rem;
-        min-height: 100%;
+        height: 100%;
+        max-height: calc(100% - 3rem);
         border-radius: 15px 15px 0 0;
         padding: 1rem;
     }
@@ -58,12 +63,31 @@
         color: $gray;
     }
 
+    & &__results {
+        overflow: scroll;
+        height: 100%;
+    }
+
     & &__result {
         color: $dark;
         background-color: $gray;
         margin: 1rem 0;
         border-radius: 15px;
         padding: 1rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+        & &__title {
+            font-size: 2rem;
+        }
+
+        & &__input {
+            font-size: 1.75rem;
+        }
+
+        & &__search {
+            font-size: 1.5rem;
+        }
     }
 
 }

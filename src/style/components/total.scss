@@ -5,16 +5,27 @@
     background-color: $dark;
     width: 100%;
     padding: 1rem;
-    color: $gray;
-    display: flex;
-    gap: 1rem;
-    font-size: 0.75rem;
-    align-items: flex-end;
+
+    & &__content {
+        max-width: 1200px;
+        margin: 0 auto;
+        color: $gray;
+        display: flex;
+        gap: 1rem;
+        font-size: 0.75rem;
+        align-items: flex-end;
+    }
 
     & &__item {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 0.1rem;
+    }
+
+    @media screen and (min-width: 768px) {
+        & &__content {
+            font-size: 1rem;
+        }
     }
 }

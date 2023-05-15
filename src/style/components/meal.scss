@@ -1,5 +1,5 @@
 .meal {
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     background-color: $dark;
     padding: 0.75rem;
     border-radius: 5px;
@@ -111,5 +111,33 @@
         padding: 0.25rem 0;
         display: flex;
         justify-content: space-between;
+    }
+
+    @media screen and (min-width: 1200px) {
+        & &__delete {
+            font-size: 1.5rem;
+        }
+
+        & &__name {
+            font-size: 1.75rem;
+        }
+
+        & &__down {
+            font-size: 2rem;
+        }
+
+        & &__nutrient {
+            font-size: 1.25rem;
+        }
+
+        & &__product-name {
+            font-size: 1.5rem;
+        }
+
+        & &__product-values {
+            font-size: 1.25rem;
+        }
+
+
     }
 }

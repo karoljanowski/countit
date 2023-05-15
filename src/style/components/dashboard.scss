@@ -1,9 +1,13 @@
 .dashboard {
     padding: 1rem;
-    height: 100vh;
-    background: url('../assets/blob-scene-haikei.svg');
-    background-size: cover;
-    background-position: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    & &__main {
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
     & &__top {
         display: flex;
@@ -38,20 +42,17 @@
     & &__links {
         margin-top: 40px;
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        flex-direction: column;
         gap: 1rem;
     }
 
     & &__link {
         background-color: $color;
         box-shadow: 5px 5px $dark;
-        min-width: calc(50% - 2rem);
         flex: 1;
-        height: 100px;
         color: $gray;
-        display: grid;
-        place-content: center;
+        padding: 2rem;
+        text-align: center;
         text-decoration: none;
         text-transform: uppercase;
         font-weight: 700;
@@ -83,6 +84,7 @@
     & &__calorie-form {
         display: flex;
         flex-direction: column;
+        font-size: 1.25rem;
 
 
         & label {
@@ -90,7 +92,6 @@
             font-weight: bold;
             margin-top: 1rem;
             margin-bottom: 0.25rem;
-            font-size: 1.25rem;
         }
 
         & input {
@@ -100,7 +101,7 @@
             padding: 0.5rem;
             color: $dark;
             font-weight: bold;
-            font-size: 1.25rem;
+            font-size: inherit;
             border-radius: 5px;
         }
     }
@@ -119,6 +120,7 @@
             padding: 1rem;
             text-transform: uppercase;
             font-weight: bold;
+            font-size: inherit;
 
         }
     }
@@ -139,8 +141,45 @@
     }
 
     & &__meals {
-        max-height: 450px;
+        margin-bottom: 125px;
         overflow: scroll;
     }
 
+    & &__picker {
+        margin-bottom: 1rem;
+    }
+
+    @media screen and (min-width: 1200px) {
+        & &__user {
+            font-size: 2.5rem;
+        }
+
+        & &__title {
+            font-size: 3.5rem;
+        }
+
+        & &__logout {
+            font-size: 1.5rem;
+        }
+
+        & &__link {
+            font-size: 2.5rem;
+        }
+
+        & &__subtitle {
+            font-size: 2rem;
+        }
+
+        & &__percentage {
+            font-size: 2rem;
+        }
+
+        & &__calorie-form {
+            font-size: 1.75rem;
+        }
+
+        & &__picker {
+            font-size: 1.75rem;
+        }
+    }
 }

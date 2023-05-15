@@ -17,5 +17,13 @@ body {
 
 .content {
     min-height: 100vh;
+    background: url('../assets/blob-scene-haikei.svg');
+    background-size: cover;
+    background-position: center;
 
+    @media screen and (min-width: 1200px) {
+        background: url('../assets/blob-scene-haikei-desktop.svg');
+        background-size: cover;
+        background-position: center;
+    }
 }

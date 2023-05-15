@@ -11,9 +11,6 @@ export default function DashboardMain() {
   const {currentUser, logout} = useAuth()
   const [error, setError] = useState("")
 
-  //db
-
-  //db
 
   async function handleLogout(){
     setError('')
@@ -34,7 +31,6 @@ export default function DashboardMain() {
       <h2 className='dashboard__title'>Dashboard</h2>
       <div className="dashboard__links">
         <Link className='dashboard__link' to={'/dashboard/profile'}>Profile</Link>
-        <Link className='dashboard__link' to={'/dashboard/products'}>Products</Link>
         <Link className='dashboard__link' to={'/dashboard/diet'}>Diet</Link>
       </div>
     </div>

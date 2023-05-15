@@ -4,7 +4,7 @@ import { useNavigate, Outlet } from 'react-router-dom'
 
 export default function Dashboard() {
    
-    const {currentUser, getDatabase} = useAuth()
+    const {currentUser} = useAuth()
     const navigate = useNavigate()
 
     useEffect(()=>{

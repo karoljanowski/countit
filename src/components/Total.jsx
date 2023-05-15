@@ -29,8 +29,7 @@ export default function Total({meals, userData}) {
         return (
             <div key={index} className="total__item">
                 <span>{e.sign}</span>
-                <span style={tooMuch(e)}>{e.total} </span>
-                <span>/{e.user}</span>
+                <span style={tooMuch(e)}>{e.total} / {e.user}</span>
                 <ProgressBar bgcolor={e.bgcolor} completed={(e.total/e.user) * 100}/>
             </div>
         )
@@ -38,7 +37,9 @@ export default function Total({meals, userData}) {
 
     return (
         <div className="total">
+          <div className="total__content">
             {elements}
+          </div>
         </div>
     )
 }

@@ -10,16 +10,35 @@ export default function AddModal({data, save, hide}) {
         fat: Number(data.nutriments["proteins_100g"]),
         carbo: Number(data.nutriments["carbohydrates_100g"])
     })
+    const [error, setError] = useState('')
+    
     function handleChange(e){
         setValue(e.target.value)
     }
     useEffect(() => {
+        if (
+            isNaN(nutrients.calories) ||
+            isNaN(nutrients.protein) ||
+            isNaN(nutrients.fat) ||
+            isNaN(nutrients.carbo)
+          ) {
+           setError('One or more of nutrient in our database are empty.')
+          }
         setNutrients({
-            calories: Number((data.nutriments["energy-kcal_100g"] / 100) * value),
-            protein: Number((data.nutriments["fat_100g"] / 100) * value),
-            fat: Number((data.nutriments["proteins_100g"] / 100) * value),
-            carbo: Number((data.nutriments["carbohydrates_100g"] / 100) * value)
-        })
+            calories: isNaN((data.nutriments["energy-kcal_100g"] / 100) * value)
+              ? 0
+              : Number((data.nutriments["energy-kcal_100g"] / 100) * value),
+            protein: isNaN((data.nutriments["fat_100g"] / 100) * value)
+              ? 0
+              : Number((data.nutriments["fat_100g"] / 100) * value),
+            fat: isNaN((data.nutriments["proteins_100g"] / 100) * value)
+              ? 0
+              : Number((data.nutriments["proteins_100g"] / 100) * value),
+            carbo: isNaN((data.nutriments["carbohydrates_100g"] / 100) * value)
+              ? 0
+              : Number((data.nutriments["carbohydrates_100g"] / 100) * value),
+          });
+          
     }, [value])
     function handleClick(){
         save({
@@ -47,6 +66,7 @@ export default function AddModal({data, save, hide}) {
                 <p className='modal__nutrients'>Fat: {(nutrients.protein).toFixed(2)}</p>
                 <p className='modal__nutrients'>Protein: {(nutrients.fat).toFixed(2)}</p>
                 <p className='modal__nutrients'>Carbohydrates: {(nutrients.carbo).toFixed(2)}</p>
+                {error && <p className='modal__error'>{error}</p>}
                 <input className='modal__input' type="number" placeholder='Amount' value={value} onChange={handleChange}/>
                 <button className='modal__button' onClick={handleClick}>Add</button>
             </div>

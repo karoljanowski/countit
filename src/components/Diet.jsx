@@ -9,6 +9,8 @@ import { useAuth } from './Context'
 import { updateUserMeals } from '../crud'
 import Total from './Total'
 import Loading from './Loading'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Diet() {
     const navigate = useNavigate()
@@ -27,7 +29,7 @@ export default function Diet() {
     function addMeal(){
         const newMeal = {
             id: nanoid(),
-            date: date,
+            date: date.toLocaleDateString(),
             name: 'Meal',
             total: {
                 calories: 0,
@@ -42,19 +44,6 @@ export default function Diet() {
     function deleteMeal(id){
         const updatedMeals = meals.filter(meal => meal.id !== id);
         setMeals(updatedMeals);
-    }
-    const handleItemChange = (id, newName) => {
-        setMeals((prev) =>
-          prev.map((meal) => (meal.id === id ? { ...meal, name: newName } : meal))
-        );
-    };
-    function showAddProduct(meal){
-        setCurrentMeal(meal)
-        setAddingProducts(true)
-    }
-    function hideAddProduct(){
-        setCurrentMeal({})
-        setAddingProducts(false)
     }
     function addProduct(id, product){
         const mealIndex = meals.findIndex(meal => meal.id === id);
@@ -72,6 +61,20 @@ export default function Diet() {
         setMeals(updatedMeals);
     }
 
+    const handleItemChange = (id, newName) => {
+        setMeals((prev) =>
+          prev.map((meal) => (meal.id === id ? { ...meal, name: newName } : meal))
+        );
+    };
+    function showAddProduct(meal){
+        setCurrentMeal(meal)
+        setAddingProducts(true)
+    }
+    function hideAddProduct(){
+        setCurrentMeal({})
+        setAddingProducts(false)
+    }
+    
     const prevMealsRef = useRef(meals);
 
     useEffect(() => {
@@ -102,18 +105,21 @@ export default function Diet() {
 
       const updateDB = async () => {
           try{
-            await updateUserMeals(meals, currentUser.email)
-          }catch(error){
-            console.log(error)
-          }
-      }
-      if(meals.length > 0){
-          updateDB()
-      }
-      setTodayMeals(meals.filter(meal => {
-        return meal.date === date
-      }))
-    }, [meals]);
+              await updateUserMeals(meals, currentUser.email)
+            }catch(error){
+                console.log(error)
+            }
+        }
+        updateDB()
+      
+    }, [meals])
+
+    useEffect(() => {
+        setTodayMeals(meals.filter(meal => {
+          return meal.date === date.toLocaleDateString()
+        }))
+    }, [meals, date])
+
     useEffect(() => {
         const getDataOnLoad = async () => {
             try{
@@ -130,13 +136,8 @@ export default function Diet() {
             setMeals(userData.meals)
         }
     }, [userData])
-    function handleDate(e){
-        setDate(new Date(e.target.value))
-    }
-    console.log(todayMeals)
 
-    
-    const mealsDOM = meals.map(meal => {
+    const mealsDOM = todayMeals.map(meal => {
         return <Meal 
         key={meal.id} 
         data={meal}
@@ -157,7 +158,7 @@ export default function Diet() {
                 <button className='dashboard__add-meal' onClick={addMeal}>Add meal</button>
             </div>
             <h2 className='dashboard__subtitle'>Meals</h2>
-            <input type="date" onChange={handleDate} defaultValue={date.toISOString().slice(0, 10)}/>
+            <DatePicker className='dashboard__picker' selected={date} onChange={date => setDate(date)} />
             <div className="dashboard__meals">
                 {mealsDOM}
             </div>
@@ -167,7 +168,7 @@ export default function Diet() {
             addProduct={(product) => addProduct(currentMeal.id, product)} 
             hideAddProduct={hideAddProduct} 
             />}
-            {userData && !addingProducts && <Total meals={meals} userData={userData} />}
+            {userData && !addingProducts && <Total meals={todayMeals} userData={userData} />}
         </div>
 
     )

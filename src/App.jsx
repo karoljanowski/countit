@@ -21,7 +21,6 @@ function App() {
           <Route exact path='/dashboard' element={<Dashboard />}>
             <Route exact path='/dashboard' element={<DashboardMain />} />
             <Route exact path='/dashboard/profile' element={<Profile />} />
-            <Route exact path='/dashboard/products' element={<h1>Products</h1>} />
             <Route exact path='/dashboard/diet' element={<Diet />} />
           </Route>
         </Routes>
