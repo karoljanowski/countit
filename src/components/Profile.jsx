@@ -105,33 +105,42 @@ export default function Profile() {
                     name='userCalories'
                     onChange={handleChange}
                     />
+                
 
                 <label htmlFor="protein">Protein</label>
-                <input
-                    type="number"
-                    id="protein"
-                    value={formData.userProtein}
-                    name='userProtein'
-                    onChange={handleChange}
-                    />
+                <div className="dashboard__input-wrapper">                    
+                    <input
+                        type="number"
+                        id="protein"
+                        value={formData.userProtein}
+                        name='userProtein'
+                        onChange={handleChange}
+                        />
+                    <span> / {((formData.userProtein * 4 / formData.userCalories) * 100).toFixed(2)}%</span>
+                </div>
 
                 <label htmlFor="fat">Fat</label>
-                <input
-                    type="number"
-                    id="fat"
-                    value={formData.userFat}
-                    name='userFat'
-                    onChange={handleChange}
-                    />
-
+                <div className="dashboard__input-wrapper">
+                    <input
+                        type="number"
+                        id="fat"
+                        value={formData.userFat}
+                        name='userFat'
+                        onChange={handleChange}
+                        />
+                    <span> / {((formData.userFat * 9 / formData.userCalories) * 100).toFixed(2)}%</span>
+                </div>
                 <label htmlFor="carbo">Carbo</label>
-                <input
-                    type="number"
-                    id="carbo"
-                    value={formData.userCarbo}
-                    name='userCarbo'
-                    onChange={handleChange}
-                    />
+                <div className="dashboard__input-wrapper">  
+                    <input
+                        type="number"
+                        id="carbo"
+                        value={formData.userCarbo}
+                        name='userCarbo'
+                        onChange={handleChange}
+                        />
+                    <span> / {((formData.userCarbo * 4 / formData.userCalories) * 100).toFixed(2)}%</span>
+                </div>
                 <div className='dashboard__form-buttons'>
                     <button onClick={handleCancel} type='button'>Cancel</button>
                     <button onClick={handleSubmit}>Save</button>

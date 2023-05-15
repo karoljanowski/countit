@@ -103,6 +103,7 @@
             font-weight: bold;
             font-size: inherit;
             border-radius: 5px;
+            flex: 1;
         }
     }
 
@@ -123,6 +124,12 @@
             font-size: inherit;
 
         }
+    }
+
+    & &__input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 5px;
     }
 
     & &__add-meal {
